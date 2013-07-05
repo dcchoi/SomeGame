@@ -34,9 +34,9 @@ public class ResourcesManager
 	public ITextureRegion menu_background_region,play_region,options_region;
 	static ITextureRegion mBackgroundTextureRegion;
 
-	//private ITextureRegion mO;
+	static ITextureRegion mO;
 
-	//private ITextureRegion mX;
+	static ITextureRegion mX;
 	public BuildableBitmapTextureAtlas gameTextureAtlas;
 
 	private BuildableBitmapTextureAtlas menuTextureAtlas;
@@ -115,8 +115,8 @@ public class ResourcesManager
     	BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/game/");
         gameTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1024, 1024, TextureOptions.BILINEAR);
         mBackgroundTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "grid.png");
-        //mO = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "O.png");
-       // mX = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "X.png");
+        mO = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "O.png");
+        mX = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "X.png");
         
         try 
         {

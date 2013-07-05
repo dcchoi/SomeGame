@@ -49,7 +49,6 @@ public class MainActivity extends BaseGameActivity {
 
 
 	//private ITextureRegion mBackgroundTextureRegion,  mO, mX,mMenuRegion1,mMenuRegion2;
-	public static boolean flag = true;
 	private Camera camera;
 	private ResourcesManager resourcesManager;
 
@@ -115,23 +114,6 @@ public class MainActivity extends BaseGameActivity {
 		
 	}
 	
-	
-	private MenuScene createMenu()
-	{
-	    menuScene = new MenuScene(camera);
-	    
-		//final IMenuItem optionsMenuItem = new ScaleMenuItemDecorator(new SpriteMenuItem(0, mMenuRegion2, getVertexBufferObjectManager()), 2, 1);
-		final IMenuItem playMenuItem = new ScaleMenuItemDecorator(new SpriteMenuItem(1, mMenuRegion1, getVertexBufferObjectManager()), 2, 1);
-	    
-	  //  menuScene.addMenuItem(optionsMenuItem);
-	    menuScene.addMenuItem(playMenuItem);
-	    
-	    menuScene.buildAnimations();
-	    menuScene.setBackgroundEnabled(false);
-	    
-	 //   menuScene.setOnMenuItemClickListener(this);
-	    return menuScene;
-	}
 	
 	
 	
