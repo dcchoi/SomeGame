@@ -6,14 +6,13 @@ import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.color.Color;
 
-import android.view.MotionEvent;
 
 import com.example.somegame.SceneManager.SceneType;
 
 public class GameScene extends BaseScene{
 	public static boolean flag = true;
-	final float xC = 266.6f;
-	final float yC = 160;
+	final float xC = ResourcesManager.CAMERA_WIDTH/3;
+	final float yC = ResourcesManager.CAMERA_HEIGHT/3;
 
 	@Override
 	public void createScene() {
@@ -36,7 +35,7 @@ public class GameScene extends BaseScene{
 	@Override
 	public void disposeScene() {
 		camera.setHUD(null);
-	    camera.setCenter(400, 240);
+	    camera.setCenter(ResourcesManager.CAMERA_WIDTH/2,ResourcesManager.CAMERA_HEIGHT/2);
 
 	    // TODO code responsible for disposing scene
 	    // removing all game scene objects.
@@ -75,8 +74,6 @@ public void addMarkers(){
 							boolean tag = true;
 							@Override
 							public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, final float pTouchAreaLocalX, final float pTouchAreaLocalY) {
-
-
 								switch (pSceneTouchEvent.getAction()) {
 			                    case TouchEvent.ACTION_DOWN: {    
 			                    	if(tag == true){
@@ -106,8 +103,8 @@ public void addMarkers(){
 					for(int j=2; j>=0; j--){
 						attachChild(rect[i][j]);
 						registerTouchArea(rect[i][j]);
-						rect[i][j].setColor(40*k,20*k,0);
-						//rect[i][j].setAlpha(200);
+						//rect[i][j].setColor(40*k,20*k,0);
+						rect[i][j].setAlpha(255);
 						
 						k++;
 					}

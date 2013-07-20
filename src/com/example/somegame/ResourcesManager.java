@@ -24,7 +24,8 @@ public class ResourcesManager
     //---------------------------------------------
     
     private static final ResourcesManager INSTANCE = new ResourcesManager();
-    
+    final static int CAMERA_WIDTH = 800;
+	final static int CAMERA_HEIGHT = 480;
     public Engine engine;
     public MainActivity activity;
     public Camera camera;
