@@ -35,7 +35,6 @@ public class ResourcesManager
 	static ITextureRegion mBackgroundTextureRegion;
 
 	static ITextureRegion mO;
-
 	static ITextureRegion mX;
 	public BuildableBitmapTextureAtlas gameTextureAtlas;
 
