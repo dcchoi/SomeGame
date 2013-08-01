@@ -3,6 +3,7 @@ package com.example.somegame;
 import org.andengine.engine.Engine;
 import org.andengine.engine.handler.timer.ITimerCallback;
 import org.andengine.engine.handler.timer.TimerHandler;
+import org.andengine.entity.scene.CameraScene;
 import org.andengine.ui.IGameInterface.OnCreateSceneCallback;
 
 
@@ -15,7 +16,7 @@ public class SceneManager {
     private BaseScene menuScene;
     private BaseScene gameScene;
     private BaseScene loadingScene;
-    
+    private BaseScene popupScene;
     //---------------------------------------------
     // VARIABLES
     //---------------------------------------------
@@ -34,6 +35,7 @@ public class SceneManager {
         SCENE_MENU,
         SCENE_GAME,
         SCENE_LOADING,
+        SCENE_POPUP,
     }
     
     
@@ -103,6 +105,24 @@ public class SceneManager {
         }));
     }
     
+
+    public void loadPopupScene(final Engine mEngine){
+    	
+    	mEngine.registerUpdateHandler(new TimerHandler(0.1f, new ITimerCallback() 
+        {
+            public void onTimePassed(final TimerHandler pTimerHandler) 
+            {
+                mEngine.unregisterUpdateHandler(pTimerHandler);
+                ResourcesManager.getInstance().loadPopUpScreen();
+                popupScene = new PopupScene();
+                gameScene.setChildScene(popupScene);
+                popupScene.setBackgroundEnabled(false);
+            }
+        }));
+    }
+
+    
+    
     public void setScene(SceneType sceneType)
     {
         switch (sceneType)
@@ -118,6 +138,9 @@ public class SceneManager {
                 break;
             case SCENE_LOADING:
                 setScene(loadingScene);
+                break;
+            case SCENE_POPUP:
+                setScene(popupScene);
                 break;
             default:
                 break;

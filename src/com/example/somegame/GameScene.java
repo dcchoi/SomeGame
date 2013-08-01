@@ -1,12 +1,11 @@
 package com.example.somegame;
 
+import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.scene.background.SpriteBackground;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.color.Color;
-
-
 import com.example.somegame.SceneManager.SceneType;
 
 public class GameScene extends BaseScene{
@@ -81,6 +80,8 @@ public void addMarkers(){
 			                    		attachChild(spO[rowID][colID]);
 			                    		setMarker('O');
 			                    		flag = false;
+				                    	createPopup();
+
 			                    		}else{
 			                    		attachChild(spX[rowID][colID]);
 			                    		setMarker('X');
@@ -88,6 +89,7 @@ public void addMarkers(){
 			                    		}
 			                    		tag = false;
 			                    	}
+			                    	
 			                    	}
 			                    }
 								return true;
@@ -103,7 +105,6 @@ public void addMarkers(){
 					for(int j=2; j>=0; j--){
 						attachChild(rect[i][j]);
 						registerTouchArea(rect[i][j]);
-						//rect[i][j].setColor(40*k,20*k,0);
 						rect[i][j].setAlpha(255);
 						
 						k++;
@@ -112,5 +113,10 @@ public void addMarkers(){
 		
 				setTouchAreaBindingOnActionDownEnabled(true);
 }
+
+
+		public void createPopup(){
+			SceneManager.getInstance().loadPopupScene(engine);
+		}
 
 }

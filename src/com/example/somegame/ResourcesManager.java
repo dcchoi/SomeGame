@@ -32,12 +32,14 @@ public class ResourcesManager
     public VertexBufferObjectManager vbom;
     public ITextureRegion splash_region;
     private BitmapTextureAtlas splashTextureAtlas;
+    public ITextureRegion popup_region;
 	public ITextureRegion menu_background_region,play_region,options_region;
 	static ITextureRegion mBackgroundTextureRegion;
 
 	static ITextureRegion mO;
 	static ITextureRegion mX;
 	public BuildableBitmapTextureAtlas gameTextureAtlas;
+	public BuildableBitmapTextureAtlas popupTextureAtlas;
 
 	private BuildableBitmapTextureAtlas menuTextureAtlas;
     
@@ -141,7 +143,25 @@ public class ResourcesManager
     }
     public void unloadGameTextures()
     {
+    	 gameTextureAtlas.unload();
+
         // TODO (Since we did not create any textures for game scene yet)
+    }
+    
+    public void loadPopUpScreen(){
+    	BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/game/");
+    	popupTextureAtlas =   new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1024, 1024, TextureOptions.BILINEAR);
+    	popup_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(popupTextureAtlas, activity, "popup.png");
+        try 
+        {
+            this.popupTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 1, 0));
+            this.popupTextureAtlas.load();
+        } 
+        catch (final TextureAtlasBuilderException e)
+        {
+            Debug.e(e);
+        }
+  
     }
     
     public void loadSplashScreen()
