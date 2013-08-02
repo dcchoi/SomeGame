@@ -35,12 +35,11 @@ public class ResourcesManager
     public ITextureRegion popup_region;
 	public ITextureRegion menu_background_region,play_region,options_region;
 	static ITextureRegion mBackgroundTextureRegion;
-
 	static ITextureRegion mO;
 	static ITextureRegion mX;
 	public BuildableBitmapTextureAtlas gameTextureAtlas;
 	public BuildableBitmapTextureAtlas popupTextureAtlas;
-
+	public ITextureRegion replay_region, mainmenu_region;
 	private BuildableBitmapTextureAtlas menuTextureAtlas;
     
     //---------------------------------------------
@@ -148,10 +147,14 @@ public class ResourcesManager
         // TODO (Since we did not create any textures for game scene yet)
     }
     
-    public void loadPopUpScreen(){
+    public void loadPopupGraphics(){
     	BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/game/");
     	popupTextureAtlas =   new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1024, 1024, TextureOptions.BILINEAR);
+    	
+    	
     	popup_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(popupTextureAtlas, activity, "popup.png");
+    	replay_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(popupTextureAtlas, activity, "replay.png");
+    	mainmenu_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(popupTextureAtlas, activity, "mainmenu.png");
         try 
         {
             this.popupTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 1, 0));

@@ -113,7 +113,7 @@ public class SceneManager {
             public void onTimePassed(final TimerHandler pTimerHandler) 
             {
                 mEngine.unregisterUpdateHandler(pTimerHandler);
-                ResourcesManager.getInstance().loadPopUpScreen();
+                ResourcesManager.getInstance().loadPopupGraphics();
                 popupScene = new PopupScene();
                 gameScene.setChildScene(popupScene);
                 popupScene.setBackgroundEnabled(false);
