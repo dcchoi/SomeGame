@@ -51,7 +51,7 @@ private void createBackground()
 public void addMarkers(){
 
 		// Create X and O Sprites		
-	Rect[][] rect = new Rect[3][3];
+	final Rect[][] rect = new Rect[3][3];
 
 				final Sprite[][] spO = new Sprite[3][3];
 				final Sprite[][] spX = new Sprite[3][3];
@@ -79,26 +79,31 @@ public void addMarkers(){
 			                    		if(flag){
 			                    		attachChild(spO[rowID][colID]);
 			                    		setMarker('O');
-			                    		flag = false;
-				                    	createPopup();
-
+			                    		flag = false;		
+			                    		if(checkWinCondition(rect,'O') == 'O'){
+			                    			createPopup();
+			                    		}
 			                    		}else{
 			                    		attachChild(spX[rowID][colID]);
 			                    		setMarker('X');
 			                    		flag = true;
+			                    		if(checkWinCondition(rect,'X') == 'X'){
+			                    			createPopup();
+			                    		}
 			                    		}
 			                    		tag = false;
 			                    	}
-			                    	
 			                    	}
 			                    }
 								return true;
 							}
-	
 					};
+			
 				}
 				}
+				
 
+	
 			//put rectangles into the scene, add color
 				int k = 0;
 				for(int i=2; i>=0; i--){
@@ -112,11 +117,40 @@ public void addMarkers(){
 				}
 		
 				setTouchAreaBindingOnActionDownEnabled(true);
+				
 }
 
 
 		public void createPopup(){
 			SceneManager.getInstance().loadPopupScene(engine);
 		}
-
+		
+		public char checkWinCondition(Rect[][] rect,char marker){
+			for(int i=0; i<rect.length-1; i++){
+				if((rect[i][0].getMarker() == marker && 
+				   rect[i][1].getMarker() == marker &&
+				   rect[i][2].getMarker() == marker)
+				   	||
+				   	(rect[0][i].getMarker() == marker && 
+					rect[1][i].getMarker() == marker &&
+					rect[2][i].getMarker() == marker)
+					||
+					(rect[0][0].getMarker() == marker && 
+					rect[1][1].getMarker() == marker &&
+					rect[2][2].getMarker() == marker
+							)
+					||
+					(rect[0][2].getMarker() == marker && 
+					rect[1][1].getMarker() == marker &&
+					rect[2][0].getMarker() == marker
+							)	
+						
+						)
+					{
+					return marker;
+				}
+			}
+			return ' ';
+		}
+		
 }

@@ -23,4 +23,8 @@ public class Rect extends Rectangle{
 	void setMarker(char mark){
 		this.mark = mark;
 	}
+	
+	char getMarker(){
+		return mark;
+	}
 }
