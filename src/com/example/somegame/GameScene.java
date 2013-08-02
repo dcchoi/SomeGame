@@ -103,7 +103,7 @@ public void addMarkers(){
 				}
 				
 
-	
+				
 			//put rectangles into the scene, add color
 				int k = 0;
 				for(int i=2; i>=0; i--){
@@ -127,20 +127,20 @@ public void addMarkers(){
 		
 		public char checkWinCondition(Rect[][] rect,char marker){
 			for(int i=0; i<rect.length-1; i++){
-				if((rect[i][0].getMarker() == marker && 
+				if((rect[i][0].getMarker() == marker &&  // check all columns
 				   rect[i][1].getMarker() == marker &&
 				   rect[i][2].getMarker() == marker)
 				   	||
-				   	(rect[0][i].getMarker() == marker && 
+				   	(rect[0][i].getMarker() == marker && //check all rows
 					rect[1][i].getMarker() == marker &&
 					rect[2][i].getMarker() == marker)
 					||
-					(rect[0][0].getMarker() == marker && 
+					(rect[0][0].getMarker() == marker && //check diagonal left to right;
 					rect[1][1].getMarker() == marker &&
 					rect[2][2].getMarker() == marker
 							)
 					||
-					(rect[0][2].getMarker() == marker && 
+					(rect[0][2].getMarker() == marker && //check diagonal right to left;
 					rect[1][1].getMarker() == marker &&
 					rect[2][0].getMarker() == marker
 							)	
