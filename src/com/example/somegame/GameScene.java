@@ -12,6 +12,8 @@ public class GameScene extends BaseScene{
 	public static boolean flag = true;
 	final float xC = ResourcesManager.CAMERA_WIDTH/3;
 	final float yC = ResourcesManager.CAMERA_HEIGHT/3;
+	static int xScore = 0;
+	static int oScore = 0;
 
 	@Override
 	public void createScene() {
@@ -81,6 +83,7 @@ public void addMarkers(){
 			                    		setMarker('O');
 			                    		flag = false;		
 			                    		if(checkWinCondition(rect,'O') == 'O'){
+			                    			oScore++;
 			                    			createPopup();
 			                    		}
 			                    		}else{
@@ -88,6 +91,7 @@ public void addMarkers(){
 			                    		setMarker('X');
 			                    		flag = true;
 			                    		if(checkWinCondition(rect,'X') == 'X'){
+			                    			xScore++;
 			                    			createPopup();
 			                    		}
 			                    		}
@@ -126,7 +130,7 @@ public void addMarkers(){
 		}
 		
 		public char checkWinCondition(Rect[][] rect,char marker){
-			for(int i=0; i<rect.length-1; i++){
+			for(int i=0; i<rect.length; i++){
 				if((rect[i][0].getMarker() == marker &&  // check all columns
 				   rect[i][1].getMarker() == marker &&
 				   rect[i][2].getMarker() == marker)
@@ -151,6 +155,12 @@ public void addMarkers(){
 				}
 			}
 			return ' ';
+		}
+		
+		public static void resetGame(){
+			oScore=0;
+        	xScore=0;
+        	flag = true;
 		}
 		
 }

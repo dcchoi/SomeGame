@@ -13,7 +13,9 @@ import org.andengine.entity.scene.menu.item.IMenuItem;
 import org.andengine.entity.scene.menu.item.SpriteMenuItem;
 import org.andengine.entity.scene.menu.item.decorator.ScaleMenuItemDecorator;
 import org.andengine.entity.sprite.Sprite;
+import org.andengine.entity.text.Text;
 import org.andengine.opengl.util.GLState;
+import org.andengine.util.color.Color;
 
 import com.example.somegame.SceneManager.SceneType;
 
@@ -30,6 +32,13 @@ public class PopupScene extends BaseScene  implements IOnMenuItemClickListener{
 			Sprite popupBg = new Sprite(0,0, resourcesManager.popup_region, vbom);
 			popupBg.setPosition((ResourcesManager.CAMERA_WIDTH/2)-(popupBg.getWidth()/2),(ResourcesManager.CAMERA_HEIGHT/2)-(popupBg.getHeight()/2));
 	    	attachChild(popupBg);
+	    	Text scoreX = new Text(240, 220, resourcesManager.font, "X: "+ GameScene.xScore+"", vbom);
+	    	scoreX.setColor(Color.RED);
+	    	Text scoreO = new Text(460, 220, resourcesManager.font, "O: "+ GameScene.oScore+"", vbom);
+	    	scoreO.setColor(Color.BLUE);
+	    	attachChild(scoreX);
+	    	attachChild(scoreO);
+
 	    	this.createMenuChildScene();
 		}
 
@@ -79,9 +88,12 @@ public class PopupScene extends BaseScene  implements IOnMenuItemClickListener{
 	        case POPUP_MENU_REPLAY:
 	        	//Load Game Scene!
 	            SceneManager.getInstance().loadGameScene(engine);
+	            GameScene.flag=true;
 	            return true;
 	        case POPUP_MENU_MAINMENU:
+	        	
 	        	SceneManager.getInstance().loadMenuScene(engine);
+	            GameScene.resetGame();
 	            return true;
 	        default:
 	            return false;
